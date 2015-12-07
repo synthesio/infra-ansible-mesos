@@ -1,0 +1,18 @@
+---
+mesos_dir: /opt/mesos
+mesos_log_dir: /var/log/mesos
+
+mesos_extra_packages:
+  - autoconf 
+  - libtool
+  - build-essential 
+  - python-dev 
+  - python-boto 
+  - libcurl4-nss-dev 
+  - libsasl2-dev 
+  - maven
+  - libapr1-dev 
+  - libsvn-dev
+  - zlib1g-dev
+  - libsasl2-modules
+  - python-pip

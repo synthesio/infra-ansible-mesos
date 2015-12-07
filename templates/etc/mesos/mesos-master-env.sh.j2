@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export MESOS_zk="zk://{{mesos_zookeeper_hosts.join(",")}}/mesos"
+export MESOS_log_dir={{mesos_log_dir}}
+export MESOS_logging_level="{{mesos_logging_level}}"
+export MESOS_work_dir={{mesos_path}}/workdir
+export MESOS_quorum={{mesos_quorum}}
+export MESOS_ip={{vlan_prefix}}.{{vlan_last_byte}}

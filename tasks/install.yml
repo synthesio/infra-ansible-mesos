@@ -1,0 +1,29 @@
+---
+- name: Install mesos build deps
+  apt: name={{ item }} state=latest
+  with_items: mesos_extra_packages
+
+- name: Downloads and unzip Mesos from the Internet
+  unarchive: src=https://archive.apache.org/dist/mesos/{{mesos_version}}/mesos-{{mesos_version}}.tar.gz dest=/tmp/ copy=no owner={{mesos_user}} group={{mesos_group}}
+
+- name: Create mesos build directory
+  file: path=/tmp/mesos-{{mesos_version}}/build state=directory owner=root group=root
+  
+# --disable-bundled-pip because Debian Jessie OpenSSL does not support SSLv3 and Mesos bundled pip is too old to know it
+- name: Configure mesos for build
+  command: ../configure --prefix={{mesos_dir}}-{{mesos_version}} --disable-bundled-pip chdir=/tmp/mesos-{{mesos_version}}/build
+  
+- name: Build mesos
+  command: make -j4 chdir=/tmp/mesos-{{mesos_version}}/build
+  
+- name: Installs mesos from sources
+  command: make install chdir=/tmp/mesos-{{mesos_version}}/build
+
+- name: Creates the /opt/mesos symlink to current Mesos version
+  file: src={{mesos_dir}}-{{mesos_version}} dest={{mesos_dir}} owner={{mesos_user}} group={{mesos_group}} state=link
+
+- name: Creates the /etc/mesos symlink to current Mesos version
+  file: src={{mesos_dir}}-{{mesos_version}}/etc/mesos owner={{mesos_user}} dest=/etc/mesos group={{mesos_group}} state=link
+
+- name: Created Mesos work directory
+  file: path={{mesos_dir}}/workdir state=directory owner={{mesos_user}} group={{mesos_group}}

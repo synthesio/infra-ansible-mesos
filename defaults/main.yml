@@ -1,0 +1,9 @@
+---
+mesos_version: 0.25.0
+mesos_user: mesos
+mesos_group: mesos
+mesos_logging_level: ERROR
+mesos_quorum: 1
+mesos_zookeeper_hosts:
+  - zk1.foo.bar:2181
+  - zk2.foo.bar:2181
