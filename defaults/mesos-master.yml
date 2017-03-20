@@ -1,0 +1,4 @@
+---
+mesos_config_files:
+  - work_dir
+  - quorum
