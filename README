@@ -1,0 +1,15 @@
+### Mesos build and deployment role
+
+This role builds a mesos Debian package in a Docker container, the deploys it on a cluster.
+
+Inventory expects 2 groups:
+
+  - mesos-master
+  - mesos-slave
+  
+And Docker running on the deployment host.
+
+usage:
+
+``` ansible-playbook -i inventory playbooks/mesos.yml
+```
