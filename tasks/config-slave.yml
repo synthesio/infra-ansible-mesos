@@ -1,0 +1,9 @@
+---
+- name: Deploys Mesos slave init script
+  template: src=etc/init.d/mesos-slave.j2 dest=/etc/init.d/mesos-slave mode=0755 owner={{mesos_user}} group={{mesos_group}}
+
+- name: Enables mesos-slave service
+  service: name=mesos-slave enabled=yes
+
+- name: Starts mesos-slave service
+  service: name=mesos-slave state=started

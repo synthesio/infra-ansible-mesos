@@ -3,3 +3,5 @@
 - include: config.yml
 - include: config-master.yml
   when: mesos_host_type == "master"
+- include: config-slave.yml
+  when: mesos_host_type == "slave"
