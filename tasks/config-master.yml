@@ -4,3 +4,6 @@
 
 - name: Enables mesos-master service
   service: name=mesos-master enabled=yes
+
+- name: Starts mesos-master service
+  service: name=mesos-master state=started

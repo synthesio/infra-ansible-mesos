@@ -1,0 +1,27 @@
+#!/bin/sh
+# ZooKeeper URL (used for leader election amongst masters)
+ZK=`cat /etc/mesos/zk`
+
+# Human readable name for the cluster, displayed in the webui
+CLUSTER="mesos"
+
+
+# IP address to listen on (in case that you start master
+# on this node, it will bind to this address)
+#IP="192.168.1.1"
+
+# The hostname the master should report
+#HOSTNAME=""
+
+# Port to listen on (default: 5050)
+PORT=5050
+
+# Path to a file with a list of slaves (one per line) to advertise offers for;
+# should be of the form: file://path/to/file (default: *)
+WHITELIST='*'
+
+# alternative is to use MESOS_<option> as an envar
+# option list is available with /usr/sbin/mesos-master --help
+# EX :
+export MESOS_log_dir={{mesos_log_dir}}
+export MESOS_logging_level="{{mesos_logging_level}}"
