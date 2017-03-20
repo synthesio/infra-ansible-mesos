@@ -1,6 +1,6 @@
 ---
 - name: Copy Mesos pre built package to host
-  copy: src=mesos-1.2.0-0.1.20170313101842.deb dest=/tmp/{{mesos_package}} mode=0644 owner=root group=root
+  copy: src=/tmp/mesos-build/{{mesos_package}} dest=/tmp/{{mesos_package}} mode=0644 owner=root group=root
 
 - name: install Mesos package
   apt: deb="/tmp/{{mesos_package}}"

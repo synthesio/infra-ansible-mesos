@@ -1,0 +1,12 @@
+---
+- name: Build mesos artifact directory
+  file: name={{mesos_artifact}} mode=755 state=directory
+  run_once: true
+  
+- name: Build mesos from Docker
+  shell: docker build -t mesos roles/mesos/files/
+  run_once: true
+    
+- name: Build mesos from Docker
+  shell: docker run -i -v {{mesos_artifact}}:/mnt/artifacts mesos 
+  run_once: true

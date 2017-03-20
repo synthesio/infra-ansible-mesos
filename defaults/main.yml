@@ -8,7 +8,8 @@ mesos_zookeeper_hosts:
   - zk05.compute.production.int.synthesio.net:2181
   - zk06.compute.production.int.synthesio.net:2181
 mesos_work_dir: /var/lib/mesos
-mesos_package: mesos-1.2.0-0.1.20170313101842.deb
+mesos_package: mesos-1.2.0.deb
 hadoop_home: /usr/local/hadoop
 mesos_launcher: posix
 mesos_switch_user: 'false'
+mesos_artifact: /tmp/mesos-build
