@@ -1,0 +1,33 @@
+#!/bin/sh
+# if zookeeper URL is not specified, slaves will connect directly
+# to specified master (not a fault-tolerant mode)
+# May be one of:
+#   zk://host1:port1,host2:port2,.../path
+#   zk://username:password@host1:port1,host2:port2,.../path
+#   file://path/to/file (where file contains one of the above)
+#
+#MASTER="zk://localhost:2181/mesos"
+# master could be also specified by an IP address of the master (not fault-tolerant)
+#MASTER="192.168.1.1"
+MASTER="`cat /etc/mesos/zk`"
+# slave's ip
+IP=""
+
+# The hostname the slave should report
+#HOSTNAME=""
+
+# Port to listen on (default: 5051)
+PORT=5051
+
+ULIMIT_OPEN_FILES=100000
+ULIMIT_MAX_PROCESSES=256761
+ULIMIT_PENDING_SIGNALS=256761
+
+# alternative is to use MESOS_<option> as an envar
+# option list is available with /usr/sbin/mesos-slave --help
+# EX :
+export MESOS_log_dir=/var/log/mesos
+
+# slave environment variables
+export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+#export MESOS_HOME="/usr/local/lib/"

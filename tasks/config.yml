@@ -2,6 +2,9 @@
 - name: Copy zookeeper list to mesos global directory
   template: src=etc/mesos/zk.j2 dest=/etc/mesos/zk owner="root" group="root" mode=0644
 
+- name: Deploys Mesos defaults
+  template: src=etc/default/mesos-{{mesos_host_type}}.j2 dest=/etc/default/mesos-{{mesos_host_type}} mode=0644 owner={{mesos_user}} group={{mesos_group}}
+
 - name: Copy mesos fonfiguration files
   template: src=etc/mesos/{{item}}.j2 dest="/etc/mesos-{{mesos_host_type}}/{{item}}" owner="root" group="root" mode=0644
   with_items: "{{ mesos_config_files }}"
