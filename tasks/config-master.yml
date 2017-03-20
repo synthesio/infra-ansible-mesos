@@ -1,9 +1,0 @@
----
-- name: Deploys Mesos master init script
-  template: src=etc/init.d/mesos-master.j2 dest=/etc/init.d/mesos-master mode=0755 owner={{mesos_user}} group={{mesos_group}}
-
-- name: Enables mesos-master service
-  service: name=mesos-master enabled=yes
-
-- name: Starts mesos-master service
-  service: name=mesos-master state=started
