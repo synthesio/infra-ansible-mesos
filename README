@@ -11,5 +11,18 @@ And Docker running on the deployment host.
 
 usage:
 
-``` ansible-playbook -i inventory playbooks/mesos.yml
-```
+- hosts: all
+  remote_user: root
+  connection: local
+  tasks:
+    - include: roles/mesos/tasks/build.yml
+
+- hosts: mesos-master
+  remote_user: root
+  roles:
+    - mesos
+
+- hosts: mesos-slave
+  remote_user: root
+  roles:
+    - mesos
