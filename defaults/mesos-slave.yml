@@ -1,6 +1,0 @@
----
-mesos_config_files:
-  - work_dir
-  - hadoop_home
-  - launcher
-  - switch_user

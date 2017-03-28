@@ -5,9 +5,15 @@
 - name: Deploys Mesos defaults
   template: src=etc/default/mesos-{{mesos_host_type}}.j2 dest=/etc/default/mesos-{{mesos_host_type}} mode=0644 owner={{mesos_user}} group={{mesos_group}}
 
-- name: Copy mesos fonfiguration files
-  template: src=etc/mesos/{{item}}.j2 dest="/etc/mesos-{{mesos_host_type}}/{{item}}" owner="root" group="root" mode=0644
-  with_items: "{{ mesos_config_files }}"
+- name: Copy mesos master fonfiguration files
+  template: src=etc/mesos/{{item}}.j2 dest="/etc/mesos-master/{{item}}" owner="root" group="root" mode=0644
+  with_items: "{{ mesos_master_config_files }}"
+  when: mesos_host_type == 'master'
+
+- name: Copy mesos slave fonfiguration files
+  template: src=etc/mesos/{{item}}.j2 dest="/etc/mesos-slave/{{item}}" owner="root" group="root" mode=0644
+  with_items: "{{ mesos_slave_config_files }}"
+  when: mesos_host_type == 'slave'
 
 - name: Deploys Mesos init script
   template: src=etc/init.d/mesos-{{mesos_host_type}}.j2 dest=/etc/init.d/mesos-{{mesos_host_type}} mode=0755 owner={{mesos_user}} group={{mesos_group}}
